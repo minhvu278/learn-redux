@@ -1,24 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
+import {connect} from "react-redux";
+import PropTypes from "prop-types";
 
-const Todos = () => {
-
-    const [todos, setTodos] = useState([
-        {
-            id: 1,
-            title: 'Viec 1',
-            complete: false
-        },
-        {
-            id: 2,
-            title: 'Viec 2',
-            complete: false
-        },
-        {
-            id: 3,
-            title: 'Viec 3',
-            complete: false
-        },
-    ])
+const Todos = ({todos}) => {
 
     return (
         <div className='todo-list'>
@@ -35,4 +19,12 @@ const Todos = () => {
     );
 };
 
-export default Todos;
+Todos.propTypes = {
+    todos: PropTypes.array.isRequired
+}
+
+const mapStateToProps = state => ({
+    todos: state.myTodos.todos
+})
+
+export default connect(mapStateToProps, {})(Todos);

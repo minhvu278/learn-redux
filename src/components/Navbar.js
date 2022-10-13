@@ -1,16 +1,22 @@
 import React from 'react';
+import {connect} from "react-redux";
 
-const Navbar = () => {
+const Navbar = ({todos}) => {
+    const length = todos.length
     return (
         <div className='navbar'>
-            <h1>My Redux Todo App</h1>
+            <h1>My Redux Todos App</h1>
             <ul>
                 <li>Home</li>
                 <li>About</li>
-                <li>Total todos: 3</li>
+                <li>Total todos: {length} </li>
             </ul>
         </div>
     )
 }
 
-export default Navbar;
+const mapStateToProps = state => ({
+    todos: state.myTodos.todos
+})
+
+export default connect(mapStateToProps, {}) (Navbar);
